@@ -28,22 +28,14 @@ public class BookController {
     }
 
 
-    @PutMapping("/{id}")
-    public Books updatePerson(@PathVariable Integer id, @RequestBody Books books) {
-        Books existingBook = bookRepository.findById(id).orElseThrow();
-        existingBook.setTitle(books.getTitle());
-        existingBook.setAuthor(books.getAuthor());
-        existingBook.setCategory(books.getCategory());
-        existingBook.setDescription(books.getDescription());
-        existingBook.setNumberPage(books.getNumberPage());
-        existingBook.setPrice(books.getPrice());
-        existingBook.setReleaseDate(books.getReleaseDate());
-        return bookRepository.save(existingBook);
+    @PutMapping("/update/{id}")
+    public Books updateProduct(@PathVariable int id, @RequestBody Books books) {
+        return bookService.updateBook(id, books);
     }
 
     @DeleteMapping("/delete/{id}")
     public String deleteBook(@PathVariable int id){
-        return bookService.deleteBook(id);
+        return bookService. deleteBook(id);
     }
 
     @GetMapping("/getBookAvatar")
